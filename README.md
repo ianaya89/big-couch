@@ -1,6 +1,6 @@
 # electron-demo
 
-Demo desktop app with electron.
+Demo desktop app using electron.
 
 ## Install Electron
 `$ npm install -g  electron-prebuilt`
