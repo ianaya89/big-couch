@@ -1,0 +1,27 @@
+{
+  "name": "big-coach",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ianaya89/electron-demo",
+  "authors": [
+    "Ignacio Anaya <ignacio.anaya89@gmail.com>"
+  ],
+  "description": "Video analytics tool for sports",
+  "main": "main.js",
+  "keywords": [
+    "sports",
+    "video",
+    "frame",
+    "analytics"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}

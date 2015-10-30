@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Hello World!</title>
-  <link rel="stylesheet" type="text/css" href="css/app.css">
+  <title>Big Coach</title>
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
   <div class="well">
@@ -43,63 +43,9 @@
     
   </div>
 
-  <script src="js/video.frame.lib.js"></script>
-  <script type="text/javascript">
-
-    var videoFrame = VideoFrame({
-      id: 'videoPlayer',
-      frameRate: FrameRates.film,
-      callback: function(response) {
-        console.log(response);
-      }
-    });
-
-    var isPlaying = false;
-
-    document.getElementById('play').addEventListener('click', function(){
-      if (isPlaying) {
-        videoFrame.video.pause();
-      } 
-      else {
-        videoFrame.video.play();
-      }
-
-      isPlaying = !isPlaying;
-    });
-
-    document.getElementById('frame').addEventListener('click', function(){
-      alert(videoFrame.get());
-    });
-
-    document.getElementById('shoot').addEventListener('click', function(b){
-      var c = videoFrame.toSMPTE();
-      var a = document.createElement("canvas");
-
-      a.width = videoFrame.video.videoWidth;
-      a.height = videoFrame.video.videoHeight;
-      a.getContext("2d").drawImage(videoFrame.video, 0, 0);
-      a = a.toDataURL("image/jpeg");
-      if ("dataURI" === b) return a;
-
-      document.getElementById('videoFrameScreenshots').innerHTML += '<li><a class="thumbnail"><img src="' + a + '" alt="' + c + '" /><p>' + c + "</p></a></li>";
-    });
-
-    document.getElementById('smpte').addEventListener('click', function(){
-      alert(videoFrame.toSMPTE());
-    });
-
-    document.getElementById('bw').addEventListener('click', function(){
-      videoFrame.seekBackward(1, function(a, b){
-        console.log(a, b);
-      });
-    });
-
-    document.getElementById('fw').addEventListener('click', function(){
-      videoFrame.seekForward(1, function(a, b){
-        console.log(a, b);
-      });
-    });
-
-  </script>
+  <script src="bower_components/jquery/dist/jquery.jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/video-frame.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
