@@ -19,10 +19,6 @@ document.getElementById('play').addEventListener('click', function(){
   isPlaying = !isPlaying;
 });
 
-document.getElementById('frame').addEventListener('click', function(){
-  alert(videoFrame.get());
-});
-
 document.getElementById('shoot').addEventListener('click', function(b){
   var c = videoFrame.toSMPTE();
   var a = document.createElement("canvas");
@@ -34,10 +30,6 @@ document.getElementById('shoot').addEventListener('click', function(b){
   if ("dataURI" === b) return a;
 
   document.getElementById('videoFrameScreenshots').innerHTML += '<li><a class="thumbnail"><img src="' + a + '" alt="' + c + '" /><p>' + c + "</p></a></li>";
-});
-
-document.getElementById('smpte').addEventListener('click', function(){
-  alert(videoFrame.toSMPTE());
 });
 
 document.getElementById('bw').addEventListener('click', function(){
