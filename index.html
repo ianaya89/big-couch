@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Big Coach</title>
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
 
@@ -16,8 +17,8 @@
           <h1>Big Coach <small>the analytics tool for sports</small></h1>
         </div>
       </div>
-      <div class="col-xs-5">
-        <form class="form-inline" style="margin-top:100px">
+      <div class="col-xs-5 text-right">
+        <form class="form-inline" style="margin-top: 45px">
           <div class="form-group" >
             <input id="file" type="file" class="form-control"> 
             <button id="load" class="btn btn-success">Load Video</button>
@@ -26,26 +27,26 @@
       </div>
     </div>
 
-    <hr>
-
     <div class="well">
 
       <div class="row">
         <div class="col-xs-12">
-          <video id="video">
-            <source src="videos/ciudad.mp4"></source>
-          </video>
+          <button id="bw" class="btn btn-lg"><span class="glyphicon glyphicon-backward"></button>
+          <button id="play" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-play"></span></button>
+          <button id="fw" class="btn btn-lg"><span class="glyphicon glyphicon-forward"></button>
+          
+          <button id="frame">Get Frame</button>
+          <button id="smpte">Get SMPTE</button>
+          
+          <button id="shoot" class="btn btn-success btn-lg"><small class="glyphicon glyphicon-picture"></small></button>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-12">
-          <button id="play">PLAY</button>
-          <button id="frame">Get Frame</button>
-          <button id="smpte">Get SMPTE</button>
-          <button id="fw">>></button>
-          <button id="bw"><<</button>
-          <button id="shoot">:O</button>
+          <video id="video" style="width: 100%">
+            <source src="videos/ciudad.mp4"></source>
+          </video>
         </div>
       </div>
 
