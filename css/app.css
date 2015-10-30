@@ -1,3 +1,19 @@
-.btn {
+.controls .btn {
   padding: 20px 40px;
+}
+
+.buffer {
+  margin-top: 20px;
+}
+
+ul {
+  list-style: none;
+}
+
+.file-bar {
+  margin-top: 45px;
+}
+
+.thumbnail {
+  width: 10%;
 }

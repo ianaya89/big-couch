@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="col-xs-5 text-right">
-        <form class="form-inline" style="margin-top: 45px">
+        <form class="form-inline file-bar">
           <div class="form-group" >
             <input id="file" type="file" class="form-control"> 
             <button id="load" class="btn btn-success">Load Video</button>
@@ -29,36 +29,40 @@
 
     <div class="well">
 
-      <div class="row">
-        <div class="col-xs-12">
-          <button id="bw" class="btn btn-lg"><span class="glyphicon glyphicon-backward"></button>
+      <div class="row controls">
+        <div class="col-xs-8 text-center">
+          <button id="bw" class="btn btn-lg"><span class="glyphicon glyphicon-backward"></span></button>
           <button id="play" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-play"></span></button>
-          <button id="fw" class="btn btn-lg"><span class="glyphicon glyphicon-forward"></button>
-          
-          <button id="frame">Get Frame</button>
-          <button id="smpte">Get SMPTE</button>
-          
-          <button id="shoot" class="btn btn-success btn-lg"><small class="glyphicon glyphicon-picture"></small></button>
+          <button id="fw" class="btn btn-lg"><span class="glyphicon glyphicon-forward"></span></button>
+          <button id="shoot" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-picture"></span></button>
+        </div>
+        <div class="col-xs-4">
+          <button id="frame" class="btn btn-lg">Frame</button>
+          <button id="smpte" class="btn btn-lg">SMPTE</button>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row buffer">
         <div class="col-xs-12">
-          <video id="video" style="width: 100%">
+          <video id="video" style="width: 100%" controls>
             <source src="videos/ciudad.mp4"></source>
           </video>
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-xs-12">
-          <ul id="videoFrameScreenshots">
-
-          </ul>
-        </div>
-      </div>
-
     </div>
+
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Thumbnails</h3>
+        <hr>
+        <ul id="videoFrameScreenshots">
+
+        </ul>
+      </div>
+    </div>
+
   </div>
 
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
