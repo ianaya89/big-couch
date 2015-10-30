@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+  <link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+<body>
+  <div class="well">
+    <section id="container" class="clearfix">
+      <section id="frameRates">
+        <div class="btn-group" data-toggle="buttons-radio">
+          <button class="btn disabled">Format:</button>
+          <button class="btn active">MP4</button>
+          <button class="btn btn-danger disabled">OGG</button>
+          <button class="btn btn-danger disabled">WEBM</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn disabled">Frame Rate:</button>
+          <button id="frameRate" class="btn dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+            <span id="currentFrameRate">24 FPS</span>
+            <span class="caret"></span>
+          </button>
+          <ul id="frameRateMenu" class="dropdown-menu" role="menu" aria-labelledby="frameRate">
+            <li><a class="frameRate" tabindex="-1" href="#" data-frame-rate="24 FPS">24</a></li>
+            <li><a class="frameRate" tabindex="-1" href="#" data-frame-rate="29.97 FPS">29.97</a></li>
+            <li><a class="frameRate" tabindex="-1" href="#" data-frame-rate="25 FPS">25</a></li>
+            <li><a class="frameRate" tabindex="-1" href="#" data-frame-rate="30 FPS">30</a></li>
+            <li><a class="frameRate" tabindex="-1" href="#" data-frame-rate="23.98 FPS">23.98</a></li>
+            <li><a class="frameRate" tabindex="-1" href="#" data-frame-rate="50 FPS">50</a></li>
+            <li><a class="frameRate" tabindex="-1" href="#" data-frame-rate="59.94 FPS">59.94</a></li>
+            <li><a class="frameRate" tabindex="-1" href="#" data-frame-rate="60 FPS">60</a></li>
+          </ul>
+        </div>
+        <div class="btn-group">
+          <button class="btn disabled">Method:</button>
+          <button id="videoFrameMethod" class="btn dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+            <span id="currentMethod" data-video-frame-method="SMPTE">SMPTE</span>
+            <span class="caret"></span>
+          </button>
+          <ul id="videoFrameMethods" class="dropdown-menu" role="menu" aria-labelledby="videoFrameMethod">
+            <li><a class="frameRate" tabindex="-1" href="#" data-video-frame-method="SMPTE">SMPTE</a></li>
+            <li><a class="frameRate" tabindex="-1" href="#" data-video-frame-method="time">Time</a></li>
+            <li><a class="frameRate" tabindex="-1" href="#" data-video-frame-method="frame">Frames</a></li>
+          </ul>
+        </div>
+        <div id="shortcuts" class="pull-right btn btn-inverse" data-toggle="modal" href="#keyboard-shortcuts">
+          <i class="icon-cogs"></i> Shortcuts
+        </div>
+      </section>
+      <section id="videoContainer">
+        <div id="frameTracking">
+          <div class="btn-group">
+            <button class="btn disabled triggerTooltip" rel="tooltip" data-placement="top" data-original-title="Current frame rate.">FPS:</button>
+            <button id="trackFrameRate" class="btn disabled trackFrames btn-success triggerTooltip" rel="tooltip" data-placement="top" data-original-title="Current frame rate.">24</button>
+          </div>
+          <div class="btn-group">
+            <button class="btn disabled">SMPTE:</button>
+            <button id="trackSMPTE" class="btn disabled trackFrames btn-danger triggerTooltip" rel="tooltip" data-placement="top" data-original-title="Current SMPTE time code.">00:00:00:00</button>
+          </div>
+          <div class="btn-group">
+            <button class="btn disabled">Time Code:</button>
+            <button id="trackTime" class="btn disabled trackFrames btn-danger triggerTooltip" rel="tooltip" data-placement="top" data-original-title="Current time in video.">00:00:00</button>
+          </div>
+          <div class="btn-group">
+            <button class="btn disabled">Frame Number:</button>
+            <button id="trackFrames" class="btn disabled trackFrames btn-danger triggerTooltip" rel="tooltip" data-placement="top" data-original-title="Current frame in video.">0</button>
+          </div>
+        </div>
+        <video id="videoPlayer" class="video-js vjs-default-skin" width="880" height="495" controls>
+          <source src="videos/ciudad.mp4"></source>
+        </video>
+      </section>
+      <section id="videoControls">
+        <button id="playButton" class="btn btn-large pull-left"><i class="icon-play"></i></button>
+
+        <button id="seekBackward" class="btn btn-large pull-left triggerPopover" rel="popover" data-placement="right" data-original-title="Frame seeking backward" data-content="Seeks backward frames in the video."><i class="icon-step-backward"></i></button>
+
+        <button id="seekForward" class="btn btn-large pull-left triggerPopover" rel="popover" data-placement="left" data-original-title="Frame seeking forward." data-content="Seeks forward frames in the video."><i class="icon-step-forward"></i></button>
+
+        <button id="captureFrame" class="btn btn-large pull-left triggerPopover" rel="popover" data-placement="left" data-original-title="SMPTE time code capturing" data-content="Log the SMPTE time code of the current frame."><i class="icon-eye-open"></i></button>
+
+        <button id="captureScreenShot" class="btn btn-large pull-left triggerPopover" rel="popover" data-placement="left" data-original-title="Generate a thumbnail." data-content="Generate a JPEG image from the current frame."><i class="icon-picture"></i></button>
+      </section>
+      <section id="frameSeeking">
+        <div id="seekBackwardOver" style="display: none; position: absolute; left: 180px; top: 635px;">
+          <div class="btn-group" data-toggle="buttons-radio">
+            <button class="btn btn-small active">1</button>
+            <button class="btn btn-small">5</button>
+            <button class="btn btn-small">10</button>
+            <button class="btn btn-small">25</button>
+            <button class="btn btn-small">50</button>
+          </div>
+        </div>
+        <div id="seekForwardOver" style="display: none; position: absolute; left: 360px; top: 635px;">
+          <div class="btn-group" data-toggle="buttons-radio">
+            <button class="btn btn-small active">1</button>
+            <button class="btn btn-small">5</button>
+            <button class="btn btn-small">10</button>
+            <button class="btn btn-small">25</button>
+            <button class="btn btn-small">50</button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+
+
+  <script src="js/video-frame.js"></script>
+  <script src="js/app.js"></script>
+  <script type="text/javascript">
+
+  //var video = VideoFrame();
+    var video = new VideoFrame({
+      id: 'videoPlayer',
+      frameRate: FrameRates.film,
+      callback : function(response, format) {
+        switch(format) {
+          case "SMPTE":
+          document.getElementById('trackSMPTE').innerText = response;
+          $('#SMPTE-timeCode').attr('placeholder', response);
+          $('#frame-number').attr('placeholder', video.toFrames(response));
+          $('#trackSMPTE').removeClass('btn-danger disabled').addClass('btn-success');
+
+          var SMPTE = response.split(':');
+          var SMPTESeconds = Number(SMPTE[2]);
+          if (SMPTESeconds % 10 === 0 && SMPTESeconds !== 0 && Number(SMPTE[3]) === 0) {
+            // var imgData = getScreenShot('dataURI');
+            var imgData = videoFrame.getScreenShot('dataURI');
+            var jsonObj = '{ "frame": "' + response + '", "img": "' + imgData + '" }';
+            // dataScreenShots.push(jsonObj);
+            videoFrame.dataScreenShots.push(jsonObj);
+          }
+          break;
+          case "frame":
+          document.getElementById('trackFrames').innerText = Math.floor(response);
+          $('#SMPTE-timeCode').attr('placeholder', video.toSMPTE());
+          $('#trackFrames').removeClass('btn-danger disabled').addClass('btn-success');
+          break;
+          case "time":
+          document.getElementById('trackTime').innerText = response;
+          $('#SMPTE-timeCode').attr('placeholder', video.toSMPTE());
+          $('#trackTime').removeClass('btn-danger disabled').addClass('btn-success');
+          break;
+        }
+      }
+    });
+
+// var video = VideoFrame({
+//     id: 'videoPlayer',
+//     frameRate: FrameRates.film,
+//     callback: function(response) {
+//         console.log(response);
+//     }
+// });
+
+$(function() {
+  return videoFrame.init();
+});
+
+  // Analytics
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36991821-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
