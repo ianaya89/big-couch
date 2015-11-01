@@ -3,18 +3,39 @@ angular.module('big-coach', [])
 .controller('MainCtrl', function($scope, $sce) {
   $scope.videoUrl = 'videos/ciudad.mp4';
   $scope.video = null;
+  $scope.frameRates = FrameRates;
+  $scope.frame = 0;
+  $scope.fps = 25;
+  $scope.smpte = '00:00:00:00';
 
-  $scope.frame = function() {
-    return videoFrame.get();
-  };
+  $scope.videoFrame = new VideoFrame({
+    id: 'videoPlayer',
+    frameRate: $scope.fps,
+    callback: function (response, format) {
+      switch (format) {
+        case 'SMPTE':
+          $scope.$apply(function () {
+            $scope.smpte = response;
+          });
+        break;
 
-  $scope.smpte = function() {
-    return videoFrame.toSMPTE();
-  };
+        case 'frame':
+          $scope.$apply(function () {
+            $scope.frame = response;
+          });
+        break;
+      }
+    }
+  });
+
+  $scope.videoFrame.listen('SMPTE');
+  $scope.videoFrame.listen('frame');
 
   $scope.loadVideo = function() {
     $scope.videoUrl = $sce.trustAsResourceUrl($scope.video.path);
   };
+
+  initControls($scope.videoFrame);
 
 })
 

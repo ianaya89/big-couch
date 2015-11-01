@@ -37,3 +37,7 @@ app.on('ready', function() {
     mainWindow = null;
   });
 });
+
+app.on('open-file', function() {
+  console.log('anda?');
+});

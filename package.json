@@ -8,5 +8,8 @@
     "start": "node server.js"
   },
   "author": "Ignacio Anaya <ignacio.anaya89@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fluent-ffmpeg": "^2.0.1"
+  }
 }
