@@ -8,6 +8,24 @@ angular.module('big-coach', [])
   $scope.fps = 25;
   $scope.smpte = '00:00:00:00';
 
+  $scope.labels = [{
+    color: '#fc605b',
+    name: 'Salidas'
+  },
+  {
+    color: '#fdbc40',
+    name: 'Corners Ofensivos'
+  },
+  {
+    color: '#34c84a',
+    name: 'Corners Defensivos'
+  },
+  {
+    color: '#57acf5',
+    name: 'Goles'
+  }
+  ];
+
   $scope.videoFrame = new VideoFrame({
     id: 'videoPlayer',
     frameRate: $scope.fps,

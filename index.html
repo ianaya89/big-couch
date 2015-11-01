@@ -9,7 +9,7 @@
 </head>
 <body ng-app="big-coach">
 
-  <div class="window">
+  <div class="window" ng-controller="MainCtrl">
     
     <header class="toolbar toolbar-header">
         <h1 class="title">Big Couch</h1>
@@ -17,9 +17,26 @@
 
     <div class="window-content">
       <div class="pane-group">
-        <div class="pane-sm sidebar">...</div>
+        <div class="pane-sm sidebar">
+          <nav class="nav-group">
+            <ul class="list-group">
+              <li class="list-group-header">
+                <input class="form-control" type="text" placeholder="Add new label">
+                <button class="btn btn-large btn-default">
+                  <span class="icon icon-plus"></span>
+                </button>
+              </li>
+            </ul>
+            <h5 class="nav-group-title">Labels</h5>
+            <span class="nav-group-item" href="#" ng-repeat="label in labels">
+              <span class="icon icon-record" ng-style="{'color': label.color}"></span>
+              {{label.name}}
+            </span>
+          </nav>
+        </div>
+        
         <div class="pane">
-          <div class="container" ng-controller="MainCtrl">
+          <div class="container">
             <div class="row">
               <div class="col-xs-7">
                 <div class="page-header">
@@ -138,6 +155,7 @@
 
           </div>
         </div>
+
       </div>
     </div>
 
