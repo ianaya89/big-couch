@@ -3,127 +3,147 @@
 <head>
   <meta charset="UTF-8">
   <title>Big Coach</title>
-  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/photon.min.css"> 
+  <!-- <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
   <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body ng-app="big-coach">
 
-  <div class="container" ng-controller="MainCtrl">
-    <div class="row">
-      <div class="col-xs-7">
-        <div class="page-header">
-          <h1>Big Coach <small>the analytics tool for sports</small></h1>
-        </div>
-      </div>
-      <div class="col-xs-5 text-right">
-        <form class="form-inline file-bar">
-          <div class="form-group" >
-            <div file-input="video" on-change="loadVideo()"></div>
+  <div class="window">
+    
+    <header class="toolbar toolbar-header">
+        <h1 class="title">Big Couch</h1>
+      </header>
+
+    <div class="window-content">
+      <div class="pane-group">
+        <div class="pane-sm sidebar">...</div>
+        <div class="pane">
+          <div class="container" ng-controller="MainCtrl">
+            <div class="row">
+              <div class="col-xs-7">
+                <div class="page-header">
+                  <h1>Big Coach <small>the analytics tool for sports</small></h1>
+                </div>
+              </div>
+              <div class="col-xs-5 text-right">
+                <form class="form-inline file-bar">
+                  <div class="form-group" >
+                    <div file-input="video" on-change="loadVideo()"></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="well">
+
+              <div class="row info">
+                <div class="col-xs-12">
+
+                </div>
+              </div>
+
+              <div class="row controls buffer">
+                <div class="col-xs-12 col-md-3 text-center">
+                  <button id="bw" class="btn btn-lg btn-block"><span class="glyphicon glyphicon-backward"></span></button>
+                  <div class="btn-group buffer" data-toggle="buttons-radio">
+                    <button class="btn btn-small active">1</button>
+                    <button class="btn btn-small">5</button>
+                    <button class="btn btn-small">10</button>
+                    <button class="btn btn-small">25</button>
+                    <button class="btn btn-small">50</button>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-3 text-center">
+                  <button id="play" class="btn btn-danger btn-lg btn-block" style="padding: 47px 20px"><span class="glyphicon glyphicon-play"></span></button>
+                </div>
+                <div class="col-xs-12 col-md-3 text-center">
+                  <button id="fw" class="btn btn-lg btn-block"><span class="glyphicon glyphicon-forward"></span></button>
+                  <div class="btn-group buffer" data-toggle="buttons-radio">
+                    <button class="btn btn-small active">1</button>
+                    <button class="btn btn-small">5</button>
+                    <button class="btn btn-small">10</button>
+                    <button class="btn btn-small">25</button>
+                    <button class="btn btn-small">50</button>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-3 text-center">
+                  <button id="shoot" class="btn btn-success btn-lg btn-block" style="padding: 47px 20px"><span class="glyphicon glyphicon-picture"></span></button>
+                </div>
+              </div>
+
+              <div class="row buffer">
+                <div class="col-xs-12">
+                  <video id="video" style="width: 100%" ng-src="{{videoUrl}}" controls>
+                  </video>
+                </div>
+              </div>
+
+              <div class="row buffer">
+                <div class="col-xs-2">
+                  <div class="btn-group">
+                    <button class="btn disabled">FPS:</button>
+                    <button class="btn disabled btn-success">{{fps}}</button>
+                  </div>
+                </div>
+                <div class="col-xs-2">
+                  <div class="btn-group">
+                    <button class="btn disabled">Frame Number:</button>
+                    <button class="btn disabled btn-danger">{{frame}}</button>
+                  </div>
+                </div>
+                <div class="col-xs-3">
+                  <div class="btn-group">
+                    <button class="btn disabled">SMPTE:</button>
+                    <button class="btn disabled btn-danger">{{smpte}}</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="row">
+              <div class="col-xs-12">
+                <h3>Thumbnails</h3>
+                <hr>
+                <ul id="videoFrameScreenshots">
+                </ul>
+              </div>
+            </div>
+
+            <!-- <div class="row">
+              <div class="col-xs-12">
+                <div id="holder">
+                  Drag your file here
+                </div>
+
+                <script>
+                  var holder = document.getElementById('holder');
+                  holder.ondragover = function () {
+                    return false;
+                  };
+                  holder.ondragleave = holder.ondragend = function () {
+                    return false;
+                  };
+                  holder.ondrop = function (e) {
+                    e.preventDefault();
+                    var file = e.dataTransfer.files[0];
+                    console.log('File you dragged here is', file.path);
+                    return false;
+                  };
+                </script>
+              </div>
+            </div> -->
+
           </div>
-        </form>
+        </div>
       </div>
     </div>
 
-    <div class="well">
-
-      <div class="row info">
-        <div class="col-xs-12">
-
-        </div>
-      </div>
-
-      <div class="row controls buffer">
-        <div class="col-xs-12 col-md-3 text-center">
-          <button id="bw" class="btn btn-lg btn-block"><span class="glyphicon glyphicon-backward"></span></button>
-          <div class="btn-group buffer" data-toggle="buttons-radio">
-            <button class="btn btn-small active">1</button>
-            <button class="btn btn-small">5</button>
-            <button class="btn btn-small">10</button>
-            <button class="btn btn-small">25</button>
-            <button class="btn btn-small">50</button>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-3 text-center">
-          <button id="play" class="btn btn-danger btn-lg btn-block" style="padding: 47px 20px"><span class="glyphicon glyphicon-play"></span></button>
-        </div>
-        <div class="col-xs-12 col-md-3 text-center">
-          <button id="fw" class="btn btn-lg btn-block"><span class="glyphicon glyphicon-forward"></span></button>
-          <div class="btn-group buffer" data-toggle="buttons-radio">
-            <button class="btn btn-small active">1</button>
-            <button class="btn btn-small">5</button>
-            <button class="btn btn-small">10</button>
-            <button class="btn btn-small">25</button>
-            <button class="btn btn-small">50</button>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-3 text-center">
-          <button id="shoot" class="btn btn-success btn-lg btn-block" style="padding: 47px 20px"><span class="glyphicon glyphicon-picture"></span></button>
-        </div>
-      </div>
-
-      <div class="row buffer">
-        <div class="col-xs-12">
-          <video id="video" style="width: 100%" ng-src="{{videoUrl}}" controls>
-          </video>
-        </div>
-      </div>
-
-      <div class="row buffer">
-        <div class="col-xs-2">
-          <div class="btn-group">
-            <button class="btn disabled">FPS:</button>
-            <button class="btn disabled btn-success">{{fps}}</button>
-          </div>
-        </div>
-        <div class="col-xs-2">
-          <div class="btn-group">
-            <button class="btn disabled">Frame Number:</button>
-            <button class="btn disabled btn-danger">{{frame}}</button>
-          </div>
-        </div>
-        <div class="col-xs-3">
-          <div class="btn-group">
-            <button class="btn disabled">SMPTE:</button>
-            <button class="btn disabled btn-danger">{{smpte}}</button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-
-    <div class="row">
-      <div class="col-xs-12">
-        <h3>Thumbnails</h3>
-        <hr>
-        <ul id="videoFrameScreenshots">
-        </ul>
-      </div>
-    </div>
-
-    <!-- <div class="row">
-      <div class="col-xs-12">
-        <div id="holder">
-          Drag your file here
-        </div>
-
-        <script>
-          var holder = document.getElementById('holder');
-          holder.ondragover = function () {
-            return false;
-          };
-          holder.ondragleave = holder.ondragend = function () {
-            return false;
-          };
-          holder.ondrop = function (e) {
-            e.preventDefault();
-            var file = e.dataTransfer.files[0];
-            console.log('File you dragged here is', file.path);
-            return false;
-          };
-        </script>
-      </div>
-    </div> -->
+    <footer class="toolbar toolbar-footer">
+       <h1 class="title">Alpha 0.0.1</h1>
+     </footer>
 
   </div>
 
