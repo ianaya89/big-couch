@@ -6,6 +6,7 @@ angular.module('big-coach', [])
   $scope.frameRates = FrameRates;
   $scope.frame = 0;
   $scope.fps = 25;
+  $scope.newLabel = '';
   $scope.smpte = '00:00:00:00';
 
   $scope.labels = [{
@@ -25,6 +26,26 @@ angular.module('big-coach', [])
     name: 'Goles'
   }
   ];
+
+  $scope.addLabel = function() {
+    if ($scope.newLabel) {
+      $scope.labels.push({
+        name: $scope.newLabel,
+        color: getRandomColor()
+      });
+
+      $scope.newLabel = '';
+    }
+  };
+
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 
   $scope.videoFrame = new VideoFrame({
     id: 'videoPlayer',
